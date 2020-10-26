@@ -1,6 +1,10 @@
-# sandbox
+# Simple step by step
+## Load libraries
 library(viridis)
-source('/Volumes/lacie_macosx/numerical_analysis_toolbox/ecoacoustics_eda/audio_metadata_utilities.R')
+library(tuneR)
+library(seewave)
+
+source('/Volumes/lacie_macosx/numerical_analysis_toolbox/graph_soundscape_analysis/graph_soundscape_fcns.R')
 setwd('/Volumes/lacie_exfat/BST_ejemplo_PPII/audio/VALLES/tmp/')
 path_files = '/Volumes/lacie_exfat/BST_ejemplo_PPII/audio/VALLES/tmp/'  # Folder location of acoustic dataset
 # ---------------

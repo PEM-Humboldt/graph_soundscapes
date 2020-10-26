@@ -7,19 +7,61 @@ This repository provides a simple step by step procedure to analyze raw audio re
 To run the scripts you will need the following R packages:
 
 - seewave
-- tuneR
+- tuneR 
 - vegan: Community Ecology Package
 - ggplot
 - viridis
+
+Install the packages and load the libraries
 
 ```R
 install.packages(c("seewave", "tuneR", "vegan", "ggplot2", "viridis"))
 ```
 
-## 1. Get audio metadata
-First audio metadata is extracted from 
+## 1. Load packages and functions
 
 
+```R
+library(viridis)
+library(tuneR)
+library(seewave)
+library(vegan)
+library(ggplot2)
+source('graph_soundscape_fcns.R')
+```
+
+## 3. Get audio metadata
+
+Set the location of the audio recordings. For this simple example, the audio directory should have all the files of a single recording plot.
+
+```R
+path_files = '~/audio_example/'  # Folder location of acoustic dataset
+```
+
+Get a file list of all .wav samples
+
+```R
+flist = list.files(path_files, recursive = T, pattern = '.WAV', ignore.case = T)
+```
+
+Get metadata from raw recordings. Songmeter and Audiomoth are the currently supported audio recorders.
+
+```R
+df = metadata_audio(flist, path_files, verbose = T, rec_model = 'SM')
+```
+
+## 4. Compute and plot graphical soundscapes
+
+```R
+gs = graphical_soundscape(df, spec_wl=256, fpeaks_th=0.003, fpeaks_f=0, verbose=T) # inicial 0.002
+plot_graphical_soundscape(gs)
+```
+
+## Batch process
+Further scripts are provided to batch analyze data from multiple recording plots:
+
+- read_audio_metadata
+- batch_compute_graph_soundscape
 
 ## References
 
