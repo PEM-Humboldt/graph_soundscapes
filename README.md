@@ -53,9 +53,13 @@ df = metadata_audio(flist, path_files, verbose = T, rec_model = 'SM')
 ## 3. Compute and plot graphical soundscapes
 
 ```R
-gs = graphical_soundscape(df, spec_wl=256, fpeaks_th=0.003, fpeaks_f=0, verbose=T) # inicial 0.002
+gs = graphical_soundscape(df, spec_wl=256, fpeaks_th=0.003, fpeaks_f=0, verbose=T)
 plot_graphical_soundscape(gs)
 ```
+
+Example of a 24 hour graphical soundscape computed for a tropical dry forest patch in Dagua, Valle del Cauca, Colombia.
+
+![](./figures/example_gs.png)
 
 ## Batch process
 
