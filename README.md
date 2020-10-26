@@ -57,6 +57,7 @@ gs = graphical_soundscape(df, spec_wl=256, fpeaks_th=0.003, fpeaks_f=0, verbose=
 plot_graphical_soundscape(gs)
 ```
 
+
 ## Batch process
 
 Further scripts are provided to batch analyze data from multiple recording plots:
