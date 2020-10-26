@@ -30,7 +30,7 @@ library(ggplot2)
 source('graph_soundscape_fcns.R')
 ```
 
-## 3. Get audio metadata
+## 2. Get audio metadata
 
 Set the location of the audio recordings. For this simple example, the audio directory should have all the files of a single recording plot.
 
@@ -50,15 +50,15 @@ Get metadata from raw recordings. Songmeter and Audiomoth are the currently supp
 df = metadata_audio(flist, path_files, verbose = T, rec_model = 'SM')
 ```
 
-## 4. Compute and plot graphical soundscapes
+## 3. Compute and plot graphical soundscapes
 
 ```R
 gs = graphical_soundscape(df, spec_wl=256, fpeaks_th=0.003, fpeaks_f=0, verbose=T) # inicial 0.002
 plot_graphical_soundscape(gs)
 ```
 
+## Batch process
 
-## Batch process
 
 Further scripts are provided to batch analyze data from multiple recording plots:
 
