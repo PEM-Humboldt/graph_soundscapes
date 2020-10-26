@@ -58,10 +58,11 @@ plot_graphical_soundscape(gs)
 ```
 
 ## Batch process
+
 Further scripts are provided to batch analyze data from multiple recording plots:
 
-- read_audio_metadata
-- batch_compute_graph_soundscape
+- read_audio_metadata.R
+- batch_compute_graph_soundscape.R
 
 ## References
 
