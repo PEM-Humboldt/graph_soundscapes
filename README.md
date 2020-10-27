@@ -50,6 +50,18 @@ Get metadata from raw recordings. Songmeter and Audiomoth are the currently supp
 df = metadata_audio(flist, path_files, verbose = T, rec_model = 'SM')
 ```
 
+Plot metadata to evaluate if there were any recording issues
+
+```R
+plot_sampling(df, y_axis_factor = df$sm_model, color_factor = df$sm_model, 
+              shape_factor = factor(df$sample.rate), plot_title = df$sensor_name[1])
+
+ggplot(df, aes(y=hour)) + geom_bar(width=0.3, alpha=0.5)  # samples per hour
+
+ggplot(df, aes(y=day)) + geom_bar(width=0.3, alpha=0.5). # samples per day
+
+```
+
 ## 3. Compute and plot graphical soundscapes
 
 ```R
@@ -57,7 +69,7 @@ gs = graphical_soundscape(df, spec_wl=256, fpeaks_th=0.003, fpeaks_f=0, verbose=
 plot_graphical_soundscape(gs)
 ```
 
-Example of a 24 hour graphical soundscape computed for a tropical dry forest patch in Dagua, Valle del Cauca, Colombia.
+Example of a 24 hour graphical soundscape computed from 1108 audio recordings collected in a tropical dry forest patch in Dagua, Valle del Cauca, Colombia.
 
 ![](./figures/example_gs.png)
 

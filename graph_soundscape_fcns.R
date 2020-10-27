@@ -35,7 +35,9 @@ metadata_audio <- function(flist, path_files='.', verbose=T, rec_model='SM'){
       audio_info[[fname]]$sm_model = sm_info$model
       audio_info[[fname]]$sensor_name = sm_info$prefix
       audio_info[[fname]]$date = format(sm_info$time, format = "%Y-%m-%d %H:%M:%S")
+      audio_info[[fname]]$day = format(sm_info$time, format = "%Y-%m-%d")
       audio_info[[fname]]$time = format(sm_info$time, format = "%H:%M:%S")
+      audio_info[[fname]]$hour = format(sm_info$time, format = "%H")
       audio_info[[fname]]$length = round(file_header$samples/file_header$sample.rate,2)
       }
     else if (rec_model=='AU')
@@ -44,10 +46,13 @@ metadata_audio <- function(flist, path_files='.', verbose=T, rec_model='SM'){
       aux = strsplit(fname,'/')[[1]]
       fname_audio_wav = aux[[length(aux)]] # name of file with no path to files
       rec_info = strsplit(fname_audio_wav,'_')[[1]]
+      date_full = strptime(paste(rec_info[2], substr(rec_info[3],1,6)), format = '%Y%m%d %H%M%S')
       audio_info[[fname]]$recorder_model = 'Audiomoth'
       audio_info[[fname]]$sensor_name = rec_info[1]
-      audio_info[[fname]]$date = strptime(paste(rec_info[2], substr(rec_info[3],1,6)), format = '%Y%m%d %H%M%S')
-      audio_info[[fname]]$time = substr(rec_info[3],1,6)
+      audio_info[[fname]]$date = date_full
+      audio_info[[fname]]$day = format(date_full, format = "%Y-%m-%d")
+      audio_info[[fname]]$time = format(date_full, format = "%H:%M:%S")
+      audio_info[[fname]]$hour = format(date_full, format = "%H")
       audio_info[[fname]]$length = round(file_header$samples/file_header$sample.rate,2)
       }
   }
