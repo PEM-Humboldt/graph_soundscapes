@@ -62,6 +62,9 @@ ggplot(df, aes(y=day)) + geom_bar(width=0.3, alpha=0.5). # samples per day
 
 ```
 
+![](./figures/audio_in_time.png)
+![](./figures/samples_per_hour.png)
+
 ## 3. Compute and plot graphical soundscapes
 
 ```R
