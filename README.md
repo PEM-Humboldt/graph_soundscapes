@@ -84,6 +84,12 @@ Further scripts are provided to batch analyze data from multiple recording plots
 - read_audio_metadata.R
 - batch_compute_graph_soundscape.R
 
+
+## Author
+
+This script has been developed by Juan Sebastián Ulloa at the Instituto Humboldt, Colombia, following a previously proposed approach from other researchers (see References).
+
+
 ## References
 
 - Campos‐Cerqueira, M., et al., 2020. How does FSC forest certification affect the acoustically active fauna in Madre de Dios, Peru? Remote Sensing in Ecology and Conservation 6, 274–285. https://doi.org/10.1002/rse2.120
