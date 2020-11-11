@@ -3,7 +3,7 @@
 # Campos‐Cerqueira, M., et al., 2020. How does FSC forest certification affect the acoustically active fauna in Madre de Dios, Peru? Remote Sensing in Ecology and Conservation 6, 274–285. https://doi.org/10.1002/rse2.120
 # Furumo, P.R., Aide, T.M., 2019. Using soundscapes to assess biodiversity in Neotropical oil palm landscapes. Landscape Ecology 34, 911–923.
 # Campos-Cerqueira, M., Aide, T.M., 2017. Changes in the acoustic structure and composition along a tropical elevational gradient. JEA 1, 1–1. https://doi.org/10.22261/JEA.PNCO7I
-source('audio_metadata_utilities.R')
+source('graph_soundscape_fcns.R')
 library(viridis)
 library(vegan)
 
@@ -13,7 +13,8 @@ path_metadata = '/Volumes/lacie_exfat/BST_ejemplo_PPII/metadata/audio_metadata.c
 path_save = '/Volumes/lacie_exfat/BST_ejemplo_PPII/graphical_soundscapes/'
 sites = c("C1BO","C2BO","C3GU","C4GU","C5GU","C6CE","V1TO","V2TO","V3HU","V4HU","V5DA","V6DA")
 
-## COMPUTE MEAN FOR EACH RECORDING
+## COMPUTE GRAPH SOUNDSCAPE FOR EACH RECORDING
+# Please follow the step by step presented in read_audio_metadata to get all
 df = read.csv(path_metadata)
 
 for(site in sites){
@@ -33,40 +34,3 @@ for(site in sites){
     plot_graphical_soundscape(gs)
     dev.off()
     }
-
-# COMPUTE NMDS AND PLOT RESULT
-library(vegan)
-path_gs = '/Volumes/lacie_exfat/BST_ejemplo_PPII/graphical_soundscapes/'
-
-# load data and organize as a community matrix (sites as rows, soundscape component (species) as columns)
-tf_bins = list()
-for(site in sites){
-    gs = read.csv(paste('/Volumes/lacie_exfat/BST_ejemplo_PPII/graphical_soundscapes/',site,'.csv',sep=''))
-    tf_bins[[site]] = as.vector(t(gs))
-    }
-
-# list to dataframe
-tf_bins = as.data.frame(do.call(rbind, tf_bins))
-
-# Compute NMDS and plot
-tf_bins_nmds = metaMDS(tf_bins, distance = 'bray')
-tf_bins_nmds$stress
-plot(tf_bins_nmds, type='t',  display = 'sites')
-
-library(ade4)
-plt_data = tf_bins_nmds$points
-s.class(plt_data, fac=factor(c(rep('C',6),rep('V',6))))
-
-# Dibujar clusters
-?hclust
-tf_clust = hclust(vegdist(tf_bins_nmds$points,'euclidean'), 'ward.D')
-plot(tf_clust, labels=row.names(tf_bins))
-
-# Evaluar estadísticamente
-xdata = data.frame(x=tf_bins_nmds$points[,1], y=tf_bins_nmds$points[,2], region=factor(substr(row.names(tf_bins),1,1)))
-xdata = data.frame(x=tf_bins_nmds$points[,1], y=tf_bins_nmds$points[,2], region=c('C','V','C','V','C','V','C','V','C','V','C','V')) # with random samples
-dist = vegdist(xdata[,c('x','y')], 'euclidean')
-dist = vegdist(tf_bins, 'jaccard')
-adonis(dist~xdata$region, permutations = 1000)
-
-

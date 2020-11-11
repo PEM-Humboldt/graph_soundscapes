@@ -154,3 +154,20 @@ plot_graphical_soundscape <- function(gs){
   axis(2, at=seq(1,nfeatures,20), labels=gs_frequency[seq(1,nfeatures,20)])
 }
 
+gs_acoustic_activity <- function(gs, th=0){
+  # Compute acoustic activity based on graphical soundscape
+  # Parameters
+  # ----------
+  # gs: DataFrame. A graphical soundscape dataframe computed using the function 'graphical_soundscape'
+  # Returns
+  # th: Float. Threshold to compute the proportion of acoustic activity
+  # -------
+  # Returns a plot of the Dataframe with time of day as x-axis, frequency as the y-axis, and proportion of peaks as intensity.
+  # 
+  positive = table(gs[,-1]>th)[2]
+  negative = table(gs[,-1]>th)[1]
+  total = (nrow(gs)*ncol(gs))
+  acoustic_activity = positive/total
+  names(acoustic_activity) <- 'acoustic_activity'
+  return(acoustic_activity)
+  }
