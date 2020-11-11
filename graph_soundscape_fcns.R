@@ -105,7 +105,6 @@ graphical_soundscape <- function(df, spec_wl=256, fpeaks_th=0.001, fpeaks_f=0, v
     if(verbose){ message(idx,'/',nrow(df), ': ',fname) }
     # load audio and normalize between -1 and 1
     s = readWave(fname)
-    #s = normalize(s, unit='1')
     
     # compute fpeaks
     mspec = meanspec(s, wl = spec_wl, wn = 'hanning', norm = F, plot=F)
