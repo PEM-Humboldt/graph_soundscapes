@@ -32,11 +32,11 @@ df$path_audio = paste(path_files,df$fname,sep='')
 
 # Set threshold for graphical soundscape
 s = readWave(df$path_audio[1])
-mspec = meanspec(s, wl = spec_wl, wn = 'hanning', norm = F, plot=T)
+mspec = meanspec(s, wl = 256, wn = 'hanning', norm = F, plot=T)
 peaks = fpeaks(mspec, threshold = 0.003, freq = 0, plot=T)
 
 # Compute graphical soundscape
-gs = graphical_soundscape(df, spec_wl=256, fpeaks_th=0.003, fpeaks_f=0, verbose=T) 
+gs = graphical_soundscape(df, spec_wl=256, fpeaks_th=0.003, fpeaks_f=0, verbose=T)
 plot_graphical_soundscape(gs)
 
 # Save dataframe and plot
