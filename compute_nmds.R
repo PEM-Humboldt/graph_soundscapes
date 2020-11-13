@@ -1,7 +1,7 @@
 # COMPUTE NMDS AND PLOT RESULT
 library(vegan)
 library(ade4)
-path_gs = '/Volumes/lacie_macosx/numerical_analysis_toolbox/graph_soundscape_analysis/dataframes_gs/'
+path_gs = './dataframes_gs/'
 sites = c("C1BO","C2BO","C3GU","C4GU","C5GU","C6CE","V1TO","V2TO","V3HU","V4HU","V5DA","V6DA")
 
 # load data and organize as a community matrix (sites as rows, soundscape component (species) as columns)
