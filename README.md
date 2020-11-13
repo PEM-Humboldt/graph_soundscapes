@@ -4,7 +4,7 @@ This repository provides a simple step by step procedure to analyze raw audio re
 
 ## Dependencies
 
-To run the scripts you will need the following R packages:
+To run the scripts you will need *R version 3.6 or higher*, and the following R packages:
 
 - seewave
 - tuneR 
