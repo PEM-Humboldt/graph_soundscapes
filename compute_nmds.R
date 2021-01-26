@@ -16,7 +16,7 @@ tf_bins = as.data.frame(do.call(rbind, tf_bins))
 
 # Compute NMDS
 tf_bins_nmds = metaMDS(tf_bins, distance = 'bray')
-stressplot(tf_bins_nmds)
+stressplot(tf_bins_nmds)  # validate model fit
 tf_bins_nmds$stress
 
 # Plot results in 2D space
