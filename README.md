@@ -1,6 +1,6 @@
-# Graphical soundscapes analysis
+# Graphical soundscape analysis
 
-This repository provides a simple step by step procedure to analyze raw audio recordings coming from passive acoustic sensors using the approach proposed by Campos-Cerqueira et al., 2017, Forumo et al., 2019, and Campos-Cerqueira et al., 2017.
+Visualization of the patterns of acoustic activity displayed throughout the course of a day, or "graphical soundscape", is a popular way to characterize environmental audio recordings. This repository provides a simple step by step procedure to apply this analysis using the approach proposed by Campos-Cerqueira et al., 2017, Forumo et al., 2019, and Campos-Cerqueira et al., 2017.
 
 ## Getting started
 
