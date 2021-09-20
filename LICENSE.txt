@@ -1,4 +1,4 @@
-Copyright (c) 2020 Juan Sebastian Ulloa
+Copyright (c) 2020 Instituto de Investigación de Recursos Biológicos Alexander von Humboldt
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
