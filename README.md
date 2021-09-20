@@ -92,7 +92,7 @@ Further scripts are provided to batch analyze data from multiple recording plots
 This script has been developed by Juan Sebastián Ulloa at the Instituto Humboldt, Colombia, following a previously proposed approach from other researchers (see References).
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.txt) file for details
 
 ## References
 
