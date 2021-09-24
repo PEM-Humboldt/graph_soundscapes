@@ -1,6 +1,7 @@
 library(tuneR)
 library(seewave)
 library(ggplot2)
+library(reshape2)
 
 
 metadata_audio <- function(flist, path_files='.', verbose=T, rec_model='SM'){
@@ -152,6 +153,28 @@ plot_graphical_soundscape <- function(gs){
   axis(1, at=1:24, labels=gs$hour)
   axis(2, at=seq(1,nfeatures,20), labels=gs_frequency[seq(1,nfeatures,20)])
 }
+
+plot_graphical_soundscape_v2 <- function(gs, title='Graphical soundscape'){
+  # Plot Graphical Soundscape 
+  # Note: This function requires the viridis package
+  # Parameters
+  # ----------
+  # gs: DataFrame. A graphical soundscape dataframe computed using the function 'graphical_soundscape'
+  # Returns
+  # -------
+  # Returns a plot of the Dataframe with time of day as x-axis, frequency as the y-axis, and proportion of peaks as intensity.
+  # 
+  gs_long = melt(gs, measure.vars = 2:129)
+  colnames(gs_long)<-c('hour', 'frequency', 'peaks')
+  ggplot(gs_long, aes(hour, frequency)) +
+    geom_raster(aes(fill=peaks), vjust=0, interpolate = T) +
+    scale_fill_viridis() +
+    labs(x="Hour",
+         y="Frequency",
+         title = title) +
+    scale_y_discrete(breaks = c('F0', 'F2.5', 'F5', 'F7.49', 'F9.99'))
+}
+
 
 gs_acoustic_activity <- function(gs, th=0){
   # Compute acoustic activity based on graphical soundscape
