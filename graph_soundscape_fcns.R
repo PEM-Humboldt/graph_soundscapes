@@ -50,7 +50,7 @@ metadata_audio <- function(flist, path_files='.', verbose=T, rec_model='SM'){
       date_full = strptime(paste(rec_info[2], substr(rec_info[3],1,6)), format = '%Y%m%d %H%M%S')
       audio_info[[fname]]$recorder_model = 'Audiomoth'
       audio_info[[fname]]$sensor_name = rec_info[1]
-      audio_info[[fname]]$date = date_full
+      audio_info[[fname]]$date = as.character(date_full)
       audio_info[[fname]]$day = format(date_full, format = "%Y-%m-%d")
       audio_info[[fname]]$time = format(date_full, format = "%H:%M:%S")
       audio_info[[fname]]$hour = format(date_full, format = "%H")
