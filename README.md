@@ -4,6 +4,8 @@ Visualization of the patterns of acoustic activity displayed throughout the cour
 
 ## Getting started
 
+A simple step by step that walks you through the process is provided in the script `simple_step_by_step.R`. 
+
 ### Dependencies
 
 To run the scripts you will need *R version 3.6 or higher*, and the following R packages:
@@ -13,11 +15,12 @@ To run the scripts you will need *R version 3.6 or higher*, and the following R 
 - vegan: Community Ecology Package
 - ggplot
 - viridis
+- reshape2
 
 Install the packages and load the libraries
 
 ```R
-install.packages(c("seewave", "tuneR", "vegan", "ggplot2", "viridis"))
+install.packages(c("seewave", "tuneR", "vegan", "ggplot2", "viridis", "reshape2"))
 ```
 
 ### 1. Load packages and functions
@@ -27,7 +30,7 @@ install.packages(c("seewave", "tuneR", "vegan", "ggplot2", "viridis"))
 library(viridis)
 library(tuneR)
 library(seewave)
-library(vegan)
+library(reshape2)
 library(ggplot2)
 source('graph_soundscape_fcns.R')
 ```
@@ -37,7 +40,7 @@ source('graph_soundscape_fcns.R')
 Set the location of the audio recordings. For this simple example, the audio directory should have all the files of a single recording plot.
 
 ```R
-path_files = '~/audio_example/'  # Folder location of acoustic dataset
+path_files = './audio/V6DA/'  # location of audio dataset
 ```
 
 Get a file list of all .wav samples
@@ -52,15 +55,11 @@ Get metadata from raw recordings. Songmeter and Audiomoth are the currently supp
 df = metadata_audio(flist, path_files, verbose = T, rec_model = 'SM')
 ```
 
-Plot metadata to evaluate if there were any recording issues
+Plot sampling scheme to verify the recording scheme.
 
 ```R
-plot_sampling(df, y_axis_factor = df$sm_model, color_factor = df$sm_model, 
-              shape_factor = factor(df$sample.rate), plot_title = df$sensor_name[1])
-
-ggplot(df, aes(y=hour)) + geom_bar(width=0.3, alpha=0.5)  # samples per hour
-
-ggplot(df, aes(y=day)) + geom_bar(width=0.3, alpha=0.5). # samples per day
+ggplot(df, aes(y=hour)) + geom_bar(width=0.3, alpha=0.5) + theme_minimal()
+ggplot(df, aes(y=day)) + geom_bar(width=0.3, alpha=0.5)
 
 ```
 
@@ -80,9 +79,7 @@ Example of a 24 hour graphical soundscape computed from 1108 audio recordings co
 
 ## Batch process
 
-
-Further scripts are provided to batch analyze data from multiple recording plots:
-
+Further scripts are provided to batch analyse data from multiple recording plots:
 - read_audio_metadata.R
 - batch_compute_graph_soundscape.R
 

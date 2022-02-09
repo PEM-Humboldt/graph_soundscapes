@@ -3,6 +3,7 @@
 library(viridis)
 library(tuneR)
 library(seewave)
+library(reshape2)
 source('graph_soundscape_fcns.R')
 
 # Set variables 
